@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Dew\\MyFramework\\Core\\Application' => $baseDir . '/src/Core/Application.php',
+    'Dew\\MyFramework\\Core\\Helpers' => $baseDir . '/src/Core/Helpers.php',
 );

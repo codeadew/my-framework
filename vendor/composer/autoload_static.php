@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit7cd74e7d17e789cf629cf10043cb7bcf
 {
+    public static $files = array (
+        '571d152944b5ea67b9af1326c5ab60e6' => __DIR__ . '/../..' . '/src/helpers.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'D' => 
         array (
@@ -22,6 +26,8 @@ class ComposerStaticInit7cd74e7d17e789cf629cf10043cb7bcf
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Dew\\MyFramework\\Core\\Application' => __DIR__ . '/../..' . '/src/Core/Application.php',
+        'Dew\\MyFramework\\Core\\Helpers' => __DIR__ . '/../..' . '/src/Core/Helpers.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -5,8 +5,12 @@
     "autoload": {
         "psr-4": {
             "Dew\\MyFramework\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
+    
     "autoload-dev": {
         "psr-4": {
             "Dew\\MyFramework\\Tests\\": "tests/"
