@@ -6,11 +6,13 @@ namespace Dew\MyFramework\Routing;
 
 use Dew\MyFramework\Http\Request;
 use Dew\MyFramework\Http\Response;
+use Dew\MyFramework\Http\Middleware\Pipeline;
+use Dew\MyFramework\Core\Container;
 
 /**
  * Router
  * 
- * Handles routing of HTTP requests to appropriate handlers
+ * Handles routing with middleware support
  */
 class Router
 {
@@ -23,6 +25,45 @@ class Router
      * Current route group attributes
      */
     private array $groupStack = [];
+
+    /**
+     * Global middleware
+     */
+    private array $globalMiddleware = [];
+
+    /**
+     * Middleware aliases
+     */
+    private array $middlewareAliases = [];
+
+    /**
+     * The container instance
+     */
+    private ?Container $container = null;
+
+    /**
+     * Set the container instance
+     */
+    public function setContainer(Container $container): void
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Register global middleware
+     */
+    public function addGlobalMiddleware(string $middleware): void
+    {
+        $this->globalMiddleware[] = $middleware;
+    }
+
+    /**
+     * Register middleware alias
+     */
+    public function aliasMiddleware(string $alias, string $middleware): void
+    {
+        $this->middlewareAliases[$alias] = $middleware;
+    }
 
     /**
      * Register a GET route
@@ -98,7 +139,6 @@ class Router
      */
     private function addRoute(string $method, string $uri, mixed $action): Route
     {
-        // Apply group prefix if in a group
         $uri = $this->applyGroupPrefix($uri);
         
         $route = new Route($method, $uri, $action);
@@ -173,8 +213,43 @@ class Router
             return Response::notFound('Route not found: ' . $uri);
         }
 
-        // Execute route action
-        return $this->executeRoute($matchedRoute, $parameters, $request);
+        // Gather middleware
+        $middleware = array_merge(
+            $this->globalMiddleware,
+            $this->resolveMiddleware($matchedRoute->getMiddleware())
+        );
+
+        // Execute through middleware pipeline
+        return $this->runMiddleware($request, $middleware, function ($request) use ($matchedRoute, $parameters) {
+            return $this->executeRoute($matchedRoute, $parameters, $request);
+        });
+    }
+
+    /**
+     * Resolve middleware aliases
+     */
+    protected function resolveMiddleware(array $middleware): array
+    {
+        return array_map(function ($name) {
+            return $this->middlewareAliases[$name] ?? $name;
+        }, $middleware);
+    }
+
+    /**
+     * Run the middleware pipeline
+     */
+    protected function runMiddleware(Request $request, array $middleware, \Closure $then): Response
+    {
+        if ($this->container === null) {
+            throw new \RuntimeException('Container not set on router');
+        }
+
+        $pipeline = new Pipeline($this->container);
+
+        return $pipeline
+            ->send($request)
+            ->through($middleware)
+            ->then($then);
     }
 
     /**
@@ -184,11 +259,9 @@ class Router
     {
         $action = $route->getAction();
 
-        // If action is a closure, execute it
         if ($action instanceof \Closure) {
             $result = call_user_func_array($action, array_merge([$request], array_values($parameters)));
             
-            // Convert result to Response if it isn't already
             if (!$result instanceof Response) {
                 if (is_array($result)) {
                     return Response::json($result);
@@ -199,9 +272,7 @@ class Router
             return $result;
         }
 
-        // If action is a string (controller@method format)
         if (is_string($action)) {
-            // We'll implement controller dispatching in a later step
             return Response::html('Controller dispatching not yet implemented');
         }
 
@@ -243,7 +314,6 @@ class Router
 
         $uri = $route->getUri();
 
-        // Replace parameters in URI
         foreach ($parameters as $key => $value) {
             $uri = str_replace('{' . $key . '}', $value, $uri);
             $uri = str_replace('{' . $key . '?}', $value, $uri);

@@ -1,0 +1,63 @@
+[2025-12-15 14:39:55] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:41:04] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:41:09] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:41:47] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:41:55] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:44:30] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:44:40] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:46:12] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+
+[2025-12-15 14:46:32] Error: Call to protected method Dew\MyFramework\Core\ErrorHandler::renderException() from scope Dew\MyFramework\Core\Application in /var/www/html/my-framework/src/Core/Application.php:163
+Stack trace:
+#0 /var/www/html/my-framework/src/Core/Application.php(147): Dew\MyFramework\Core\Application->handleException()
+#1 /var/www/html/my-framework/src/Core/Application.php(182): Dew\MyFramework\Core\Application->handleRequest()
+#2 /var/www/html/my-framework/public/index.php(26): Dew\MyFramework\Core\Application->run()
+#3 {main}
+

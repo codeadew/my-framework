@@ -10,7 +10,7 @@ use Dew\MyFramework\Routing\Router;
 /**
  * RouteServiceProvider
  * 
- * Registers the router and loads routes
+ * Registers the router and configures middleware
  */
 class RouteServiceProvider extends ServiceProvider
 {
@@ -20,22 +20,47 @@ class RouteServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->container()->singleton(Router::class, function ($container) {
-            return new Router();
+            $router = new Router();
+            $router->setContainer($container);
+            return $router;
         });
     }
 
     /**
-     * Bootstrap the router by loading routes
+     * Bootstrap the router
      */
     public function boot(): void
     {
         $router = $this->app->make(Router::class);
         
-        // Load web routes
-        $this->loadRoutes($router, $this->app->basePath('routes/web.php'));
+        // Register global middleware
+        $this->registerGlobalMiddleware($router);
         
-        // You can add more route files here
-        // $this->loadRoutes($router, $this->app->basePath('routes/api.php'));
+        // Register middleware aliases
+        $this->registerMiddlewareAliases($router);
+        
+        // Load routes
+        $this->loadRoutes($router, $this->app->basePath('routes/web.php'));
+    }
+
+    /**
+     * Register global middleware (runs on every request)
+     */
+    protected function registerGlobalMiddleware(Router $router): void
+    {
+        $router->addGlobalMiddleware(\Dew\MyFramework\Http\Middleware\CheckMaintenanceMode::class);
+        $router->addGlobalMiddleware(\Dew\MyFramework\Http\Middleware\TrimStrings::class);
+    }
+
+    /**
+     * Register middleware aliases
+     */
+    protected function registerMiddlewareAliases(Router $router): void
+    {
+        $router->aliasMiddleware('log', \Dew\MyFramework\Http\Middleware\LogRequests::class);
+        $router->aliasMiddleware('headers', \Dew\MyFramework\Http\Middleware\AddHeaders::class);
+        $router->aliasMiddleware('auth', \Dew\MyFramework\Http\Middleware\Authenticate::class);
+        $router->aliasMiddleware('throttle', \Dew\MyFramework\Http\Middleware\RateLimiter::class);
     }
 
     /**

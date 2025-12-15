@@ -2,3 +2,22 @@
 [2025-12-15 10:10:07] [INFO] UserService initialized
 [2025-12-15 10:10:07] [INFO] Fetching all users
 [2025-12-15 10:10:07] [INFO] Executing query: SELECT * FROM users
+[2025-12-15 14:39:55] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:41:04] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:41:09] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:41:47] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:41:55] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:44:30] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:44:40] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:46:12] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+[2025-12-15 14:46:32] [ERROR] Class "Dew\MyFramework\Http\Middleware\Pipeline" not found in /var/www/html/my-framework/src/Routing/Router.php:247
+
+
+ ├── MiddlewareInterface.php      ← NEW
+│   │       ├── Pipeline.php                 ← NEW
+│   │       ├── LogRequests.php              ← NEW
+│   │       ├── AddHeaders.php               ← NEW
+│   │       ├── TrimStrings.php              ← NEW
+│   │       ├── CheckMaintenanceMode.php     ← NEW
+│   │       ├── Authenticate.php             ← NEW
+│   │       └── RateLimiter.php              ← NEW
