@@ -2,30 +2,25 @@
 
 declare(strict_types=1);
 
-use Dew\MyFramework\Core\Application;
-use Dew\MyFramework\Http\Request;
-use Dew\MyFramework\Http\Response;
-use Dew\MyFramework\Routing\Router;
+/**
+ * Dew Framework - Front Controller
+ * 
+ * This is the single entry point for all HTTP requests.
+ */
 
+use Dew\MyFramework\Core\Application;
+
+// Define base path
 define('BASE_PATH', dirname(__DIR__));
 
+// Load Composer's autoloader
 require_once BASE_PATH . '/vendor/autoload.php';
 
-// Create application instance
+// Create and run the application
 $app = new Application(BASE_PATH);
 
-// Create router instance
-$router = new Router();
+// Make globally accessible (for route closures)
+$GLOBALS['app'] = $app;
 
-// Load routes from configuration file
-$routeLoader = require BASE_PATH . '/routes/web.php';
-$routeLoader($router);
-
-// Capture the HTTP request
-$request = Request::capture();
-
-// Dispatch the request through the router
-$response = $router->dispatch($request);
-
-// Send the response
-$response->send();
+// Run the application
+$app->run();

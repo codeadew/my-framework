@@ -1,0 +1,4 @@
+[2025-12-15 10:10:07] [INFO] Database service initialized for myapp@localhost
+[2025-12-15 10:10:07] [INFO] UserService initialized
+[2025-12-15 10:10:07] [INFO] Fetching all users
+[2025-12-15 10:10:07] [INFO] Executing query: SELECT * FROM users
