@@ -252,13 +252,14 @@ class Router
             ->then($then);
     }
 
-    /**
+        /**
      * Execute the matched route
      */
     private function executeRoute(Route $route, array $parameters, Request $request): Response
     {
         $action = $route->getAction();
 
+        // Handle Closure
         if ($action instanceof \Closure) {
             $result = call_user_func_array($action, array_merge([$request], array_values($parameters)));
             
@@ -272,11 +273,45 @@ class Router
             return $result;
         }
 
+        // Handle Controller@method format
         if (is_string($action)) {
-            return Response::html('Controller dispatching not yet implemented');
+            return $this->dispatchToController($action, $parameters, $request);
         }
 
         return Response::serverError('Invalid route action');
+    }
+
+    /**
+     * Dispatch to controller method
+     */
+    private function dispatchToController(string $action, array $parameters, Request $request): Response
+    {
+        // Parse controller@method
+        [$controller, $method] = explode('@', $action);
+
+        // Resolve controller from container
+        $controllerInstance = $this->container->make($controller);
+
+        // Check if method exists
+        if (!method_exists($controllerInstance, $method)) {
+            throw new \RuntimeException("Method {$method} not found on controller {$controller}");
+        }
+
+        // Call method with parameters
+        $result = call_user_func_array(
+            [$controllerInstance, $method],
+            $parameters
+        );
+
+        // Ensure we return a Response
+        if (!$result instanceof Response) {
+            if (is_array($result)) {
+                return Response::json($result);
+            }
+            return Response::html((string) $result);
+        }
+
+        return $result;
     }
 
     /**

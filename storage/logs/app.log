@@ -20,4 +20,23 @@
 │   │       ├── TrimStrings.php              ← NEW
 │   │       ├── CheckMaintenanceMode.php     ← NEW
 │   │       ├── Authenticate.php             ← NEW
-│   │       └── RateLimiter.php              ← NEW
+│   │       └── RateLimiter.php              ← NEW[2025-12-16 06:16:49] [INFO] Database service initialized for myapp@localhost
+[2025-12-16 06:16:49] [INFO] UserService initialized
+[2025-12-16 06:16:49] [INFO] Fetching user with ID: 123
+[2025-12-16 06:16:49] [INFO] Executing query: SELECT * FROM users WHERE id = 123
+[2025-12-17 00:50:16] [INFO] Database service initialized for myapp@localhost
+[2025-12-17 00:50:16] [INFO] UserService initialized
+[2025-12-17 00:50:16] [INFO] Fetching all users
+[2025-12-17 00:50:16] [INFO] Executing query: SELECT * FROM users
+[2025-12-17 00:50:20] [INFO] Database service initialized for myapp@localhost
+[2025-12-17 00:50:20] [INFO] UserService initialized
+[2025-12-17 00:50:20] [INFO] Fetching user with ID: 1
+[2025-12-17 00:50:20] [INFO] Executing query: SELECT * FROM users WHERE id = 1
+[2025-12-17 00:50:25] [INFO] Database service initialized for myapp@localhost
+[2025-12-17 00:50:25] [INFO] UserService initialized
+[2025-12-17 00:50:25] [INFO] Fetching all users
+[2025-12-17 00:50:25] [INFO] Executing query: SELECT * FROM users
+[2025-12-17 00:50:28] [INFO] Database service initialized for myapp@localhost
+[2025-12-17 00:50:28] [INFO] UserService initialized
+[2025-12-17 00:50:28] [INFO] Fetching user with ID: 2
+[2025-12-17 00:50:28] [INFO] Executing query: SELECT * FROM users WHERE id = 2

@@ -71,7 +71,8 @@ class Application
         $this->container->alias(Application::class, 'app');
     }
 
-    /**
+   
+        /**
      * Register core framework services
      */
     protected function registerCoreServices(): void
@@ -91,8 +92,13 @@ class Application
         
         // Register user service
         $this->container->bind(\Dew\MyFramework\Core\Services\UserService::class);
-    }
 
+        // Register controllers (they'll be auto-resolved when needed)
+        $this->container->bind(\Dew\MyFramework\Controllers\HomeController::class);
+        $this->container->bind(\Dew\MyFramework\Controllers\UserController::class);
+        $this->container->bind(\Dew\MyFramework\Controllers\ApiController::class);
+    }
+    
     /**
      * Register service providers
      */
@@ -248,4 +254,5 @@ class Application
     {
         return $this->environment() === 'production';
     }
+
 }
